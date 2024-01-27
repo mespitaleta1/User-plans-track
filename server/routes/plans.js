@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const plans = require('../repositories/plans.repository');
+const authMiddleware = require('../express/middleware/authMiddleware');
 
-router.get('/', async (req, res) => {
+router.get('/', authMiddleware, async (req, res) => {
     try {
         const plansData = await plans.getAllPlans();
         res.json(plansData);
