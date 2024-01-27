@@ -12,7 +12,17 @@ const userRepository = () => {
         return Promise.reject(new Error("invalid credentials"))
     }
 
-    return { getByUserName }
+    const getByUserId = (userId) => {
+        const user = users.find((item=> item.id === userId));
+        if(user) {
+            return Promise.resolve(user);
+        }
+
+        return Promise.reject(new Error("not found"));
+    }
+
+
+    return { getByUserName, getByUserId }
 }
 
 
