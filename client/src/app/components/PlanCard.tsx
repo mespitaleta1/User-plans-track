@@ -15,9 +15,9 @@ export interface PlanCardProps {
 
 const PlanCard = ({ status, dateStart, dateEnd, comsuption, flag, country, plan }: PlanCardProps) => {
   const statusClasses = {
-    [STATUS.PENDING]: { bg: 'bg-amber-500/10', text: 'text-amber-500' },
-    [STATUS.ACTIVE]: { bg: 'bg-sky-500/10', text: 'text-blue-900' },
-    [STATUS.EXPIRED]: { bg: 'bg-gray-400/10', text: 'text-gray-700', flag: 'grayscale' },
+    [STATUS.PENDING]: { bg: 'bg-amber-500/10', text: 'text-amber-500', mt: 'mt-3' },
+    [STATUS.ACTIVE]: { bg: 'bg-sky-500/10', text: 'text-blue-900', mt: 'mt-3' },
+    [STATUS.EXPIRED]: { bg: 'bg-gray-400/10', text: 'text-gray-700', flag: 'grayscale', mt: 'mt-1' },
   };
 
   const fontOnExpiredClass = status === STATUS.EXPIRED ? 'text-xs text-gray-400' : 'text-gray-600 text-sm';
@@ -30,9 +30,9 @@ const PlanCard = ({ status, dateStart, dateEnd, comsuption, flag, country, plan 
   };
 
   return (
-    <div className=" px-8 py-8">
+    <div className="px-8 py-8">
       {/*Flag and status card info */}
-      <div className={`w-fit flex items-center flex-wrap rounded-full ${statusClasses[status].bg}`}>
+      <div className={`w-fit flex items-center flex-wrap rounded-full ${statusClasses[status].bg} mb-4`}>
         <div className="flex items-center justify-center h-6 w-6 rounded-full bg-white">
           <img
             className={`inline-block h-5 w-5 rounded-full ${statusClasses[status].flag}`}
@@ -45,19 +45,35 @@ const PlanCard = ({ status, dateStart, dateEnd, comsuption, flag, country, plan 
       </div>
 
       {/* Content Wrapper */}
-      <div>
-        <h2 className="text-base font-semibold leading-7 text-gray-900 text-left">{country}</h2>
-        {status === STATUS.EXPIRED && (
-          <p className="mt-1 flex items-baseline text-gray-600 text-xs">{`${dateStart} - ${dateEnd}`}</p>
-        )}
-        <p className={`mt-1 flex items-baseline ${fontOnExpiredClass}`}>{plan}</p>
-        {status === STATUS.ACTIVE && comsuption && (
-          <p className="text-left">{`${convertKBtoGB(comsuption.totalComsumption)} GB`}</p>
-        )}
+      <div className={status === STATUS.ACTIVE && comsuption ? 'flex justify-between mb-3' : ''}>
+        <div>
+          <h2 className="text-base font-semibold leading-7 text-gray-900 text-left">{country}</h2>
+          {status === STATUS.EXPIRED && (
+            <p className="mt-2 flex items-baseline text-gray-600 text-xs">{`${dateStart} - ${dateEnd}`}</p>
+          )}
+          <p className={`${statusClasses[status].mt} flex items-baseline ${fontOnExpiredClass}`}>{plan}</p>
+        </div>
 
-        {/*button Section */}
-        {status === STATUS.EXPIRED ? null : <PlanCardButton cardStatus={status} />}
+        {status === STATUS.ACTIVE && comsuption && (
+          <div className="flex flex-col align-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="w-6 h-6 ml-3"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
+            </svg>
+
+            <p className="text-left mt-3 font-semibold text-black-500">{`${convertKBtoGB(comsuption.totalComsumption)} GB`}</p>
+          </div>
+        )}
       </div>
+      {/*button Section */}
+      {status === STATUS.EXPIRED ? null : <PlanCardButton cardStatus={status} />}
     </div>
   );
 };

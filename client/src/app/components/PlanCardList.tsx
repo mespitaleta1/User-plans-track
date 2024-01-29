@@ -11,7 +11,7 @@ const PlanCardList = ({ data }: PlanCardListProps) => {
       {data &&
         data.map((item, idx) => {
           return (
-            <li className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
+            <li className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center border border-gray-300">
               <PlanCard
                 key={idx}
                 status={item.status}

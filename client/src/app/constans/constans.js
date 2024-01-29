@@ -5,7 +5,7 @@ export const STATUS = {
 };
 
 export const BTN_TEXT = {
-  PENDING: 'view details and install',
+  PENDING: 'View details and install',
   ACTIVE: {
     DETAILS: 'View details',
     CTA: 'Add more data',
