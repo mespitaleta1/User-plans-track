@@ -1,4 +1,22 @@
+import { useEffect, useState } from 'react';
+
+interface UserProfile {
+  id: string;
+  userName: string;
+  fullName: string;
+}
+
 const Navbar = ({ onHandleClick }: { onHandleClick: (value: string[]) => void }) => {
+  const [user, setUser] = useState<UserProfile | null>(null);
+  useEffect(() => {
+    async function getUser() {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user`);
+      const data = await res.json();
+      setUser(data);
+    }
+    getUser();
+  }, []);
+
   return (
     <>
       <nav id="nav" className="bg-white shadow">
@@ -24,7 +42,7 @@ const Navbar = ({ onHandleClick }: { onHandleClick: (value: string[]) => void })
             </div>
 
             <div className="flex items-center">
-              <div className="flex-shrink-0">
+              {/*<div className="flex-shrink-0">
                 <button
                   type="button"
                   className="relative inline-flex items-center gap-x-1.5 rounded-md bg-rose-500 px-3 py-2 text-xs font-medium text-white shadow-sm hover:bg-rose-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -40,8 +58,8 @@ const Navbar = ({ onHandleClick }: { onHandleClick: (value: string[]) => void })
                   </svg>
                   Add plans
                 </button>
-              </div>
-
+              </div>*/}
+              {user && <p>{user.fullName}</p>}
               <div className="hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center">
                 {/* Profile dropdown */}
                 <div className="relative ml-3">

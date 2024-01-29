@@ -17,7 +17,7 @@ export default function Home() {
         <p className="mt-6 text-md leading-8 text-gray-600">
           {filterValue.length > 1
             ? 'Check here and tarck your active and pending plans to use them wherever you want'
-            : 'Check here here your expired plans'}
+            : 'Check here your expired plans'}
         </p>
         <div className="mt-10">
           <PlanCardList filterValue={filterValue} />

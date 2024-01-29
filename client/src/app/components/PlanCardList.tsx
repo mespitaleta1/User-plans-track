@@ -10,7 +10,7 @@ const PlanCardList = ({ filterValue }: PlanCardListProps) => {
   const [plans, setPlans] = useState([]);
   useEffect(() => {
     async function getPlans() {
-      const res = await fetch('http://localhost:3000/api/plans');
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/plans`);
       const data = await res.json();
       setPlans(data);
     }
