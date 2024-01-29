@@ -1,0 +1,18 @@
+{
+  "name": "user-plan-tracker",
+  "version": "1.0.0",
+  "description": "Fullstack repository",
+  "scripts": {
+    "start": "concurrently -p \"[{name}]\" -n \"SERVER,CLIENT\" -c \"bgBlue.bold,bgMagenta.bold\" \"npm run start:server\" \"npm run start:client\"",
+    "start:client": "cd client &&  npm run dev",
+    "start:server": "cd server && npm start",
+    "install:client": "cd client &&  npm i",
+    "install:server": "cd server && npm i",
+    "preinstall": "npm run install:server && npm run install:client"
+  },
+  "author": "Melissa Espitaleta",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
