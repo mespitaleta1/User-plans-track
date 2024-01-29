@@ -1,5 +1,6 @@
 import { STATUS } from '../constans/constans';
 import PlanCardButton from './PlanCardButton';
+
 export interface PlanCardProps {
   status: string;
   dateStart: string;
@@ -12,6 +13,13 @@ export interface PlanCardProps {
   plan: string;
 }
 
+const convertKBtoGB = (kylobytes: number) => {
+  const bytesInGB = 1048576;
+  const gigaBytes = Math.floor(kylobytes) / bytesInGB;
+  const formatGB = gigaBytes.toString().slice(0, 3).replace('.', ',');
+  return formatGB;
+};
+
 const PlanCard = ({ status, dateStart, dateEnd, comsuption, flag, country, plan }: PlanCardProps) => {
   const statusClasses = {
     [STATUS.PENDING]: { bg: 'bg-amber-500/10', text: 'text-amber-500', mt: 'mt-3' },
@@ -21,12 +29,6 @@ const PlanCard = ({ status, dateStart, dateEnd, comsuption, flag, country, plan 
 
   const fontOnExpiredClass = status === STATUS.EXPIRED ? 'text-xs text-gray-400' : 'text-gray-600 text-sm';
 
-  const convertKBtoGB = (kylobytes: number) => {
-    const bytesInGB = 1048576;
-    const gigaBytes = Math.floor(kylobytes) / bytesInGB;
-    const formatGB = gigaBytes.toString().slice(0, 3).replace('.', ',');
-    return formatGB;
-  };
   const formatActiveGB = plan.split(',')[1].replace('GB', '');
 
   return (

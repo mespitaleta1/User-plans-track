@@ -10,7 +10,7 @@ const Navbar = ({ onHandleClick }: { onHandleClick: (value: string[]) => void })
   const [user, setUser] = useState<UserProfile | null>(null);
   useEffect(() => {
     async function getUser() {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user`);
+      const res = await fetch(`/api/user`);
       const data = await res.json();
       setUser(data);
     }
