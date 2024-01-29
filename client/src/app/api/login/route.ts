@@ -3,12 +3,12 @@ export async function POST(req: Request) {
   const { userName, password } = await req.json();
   try {
     const response = await fetch(`${process.env.API_BASE_URL}/api/login`, {
-      method: 'POST',
+      method: 'POST' as const,
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ userName, password }),
-    });
+    } as RequestInit);
 
     const data = await response.json();
     const token = data.token;
