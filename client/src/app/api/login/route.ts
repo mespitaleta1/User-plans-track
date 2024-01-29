@@ -1,5 +1,4 @@
-
-
+import { cookies } from 'next/headers'
 export async function POST(req: Request) {
 
     const {userName, password} = await req.json();
@@ -16,11 +15,8 @@ export async function POST(req: Request) {
           const data = await response.json();
           const token = data.token;
           
-
           if(token){
-            const requestHeaders = new Headers(req.headers);
-            requestHeaders.set("Authorization", token);
-           
+            cookies().set('token', token)
             return new Response("success", {status: 200})
           }
           else {

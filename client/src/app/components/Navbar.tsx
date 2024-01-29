@@ -9,13 +9,13 @@ const Navbar = ({ onHandleClick }: { onHandleClick: (value: string[]) => void })
               <div className="flex md:ml-6 md:flex md:space-x-8">
                 <a
                   onClick={() => onHandleClick(['Active', 'Pending'])}
-                  className="inline-flex items-center border-b-2 border-rose-500 px-1 pt-1 text-sm font-medium text-gray-900"
+                  className="cursor-pointer inline-flex items-center border-b-2 border-rose-500 px-1 pt-1 text-sm font-medium text-gray-900 hover:border-gray-300 hover:text-gray-700"
                 >
                   Plans
                 </a>
                 <a
                   onClick={() => onHandleClick(['Expired'])}
-                  className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                  className="cursor-pointer inline-flex items-center border-b-2  border-rose-500 px-1 pt-1 text-sm font-medium text-gray-900 hover:border-gray-300 hover:text-gray-700"
                 >
                   Expired plans
                 </a>
@@ -33,11 +33,10 @@ const Navbar = ({ onHandleClick }: { onHandleClick: (value: string[]) => void })
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke-width="1.5"
                     stroke="currentColor"
                     className="w-4 h-4"
                   >
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    <path d="M12 4.5v15m7.5-7.5h-15" />
                   </svg>
                   Add plans
                 </button>
