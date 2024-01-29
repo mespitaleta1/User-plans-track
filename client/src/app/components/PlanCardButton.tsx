@@ -2,7 +2,7 @@ import { STATUS, BTN_TEXT } from '../constans/constans';
 
 const PlanCardButton = ({ cardStatus }: { cardStatus: string }) => {
   return cardStatus === STATUS.PENDING ? (
-    <button className="mt-10 block w-full rounded-md bg-rose-600 px-3 py-2 text-center text-sm text-white shadow-sm hover:bg-rose-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">
+    <button className="mt-20 mb-0 block w-full rounded-md bg-rose-600 px-3 py-2 text-center text-sm text-white shadow-sm hover:bg-rose-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">
       {BTN_TEXT.PENDING}
     </button>
   ) : (

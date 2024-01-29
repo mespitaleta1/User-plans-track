@@ -1,6 +1,5 @@
 import { STATUS } from '../constans/constans';
 import PlanCardButton from './PlanCardButton';
-
 export interface PlanCardProps {
   status: string;
   dateStart: string;
@@ -28,6 +27,7 @@ const PlanCard = ({ status, dateStart, dateEnd, comsuption, flag, country, plan 
     const formatGB = gigaBytes.toString().slice(0, 3).replace('.', ',');
     return formatGB;
   };
+  const formatActiveGB = plan.split(',')[1].replace('GB', '');
 
   return (
     <div className="px-8 py-8">
@@ -40,7 +40,6 @@ const PlanCard = ({ status, dateStart, dateEnd, comsuption, flag, country, plan 
             alt={`${country} flag`}
           />
         </div>
-
         <p className={`${statusClasses[status].text} text-xs pl-2 pr-3`}>{status}</p>
       </div>
 
@@ -55,19 +54,9 @@ const PlanCard = ({ status, dateStart, dateEnd, comsuption, flag, country, plan 
         </div>
 
         {status === STATUS.ACTIVE && comsuption && (
-          <div className="flex flex-col align-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              className="w-6 h-6 ml-3"
-            >
-              <path d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
-              <path d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
-            </svg>
-
-            <p className="text-left mt-3 font-semibold text-black-500">{`${convertKBtoGB(comsuption.totalComsumption)} GB`}</p>
+          <div className="border border-gray-950 rounded-full w-20 h-20 p-3 flex flex-col items-center justify-center">
+            <p className="font-semibold text-black-500 text-center mb-0">{`${convertKBtoGB(comsuption.totalComsumption)}`}</p>
+            <span className="text-xs text-gray-400">{`/${formatActiveGB}GB`}</span>
           </div>
         )}
       </div>
